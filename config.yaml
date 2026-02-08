@@ -1,0 +1,47 @@
+plant_type: "predator_prey" # "bathtub" or "cournot" or "predator_prey"
+
+bathtub:
+    area: 1.0
+    drain: 0.05
+    init_height: 1.0
+    gravity: 9.81
+    target: 1.0
+
+cournot:
+    max_price: 3.0
+    marginal_cost: 0.01
+    q1: 0.4
+    q2: 0.6
+    target: 1.0
+
+predator_prey:
+    init_prey: 10
+    init_predator: 5
+    alpha: 0.6 # Prey growth rate
+    beta: 0.01 # Predator consumption rate
+    delta: 0.1 # Predator reproduction rate
+    gamma: 1.0 # Predator death rate
+    target: 10.0
+
+controller:
+    type: "classic" # "classic" or "nn"
+
+classic_controller:
+    kp: 0.1
+    ki: 0.01
+    kd: 0.01
+    windup_guard: 5.0
+
+nn_controller:
+    nn_architecture: [3, 8, 8, 8, 1]
+    activation_functions: ["sigmoid", "sigmoid", "sigmoid"]
+    init_weight_range: [-0.1, 0.1]
+    windup_guard: 5.0
+    seed: 42
+
+simulation:
+    num_epochs: 100
+    timesteps_per_epoch: 30
+    disturbance_range: [-0.02, 0.02]
+    learning_rate: 0.001
+    dt: 0.1
